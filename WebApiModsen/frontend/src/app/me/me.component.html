@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h3 *ngIf="isAdmin; else noAdmin" style="color: red;">{{userRole}}</h3>
+        
+        <ng-template #noAdmin><h3>User profile</h3></ng-template>
+
+      </div>
+      <div class="card-body">
+        <ng-container *ngIf="me; else loading">
+          <div class="row mb-3">
+            <div class="col-md-4"><strong>Name:</strong></div>
+            <div class="col-md-8">{{ me.name }}</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4"><strong>Last Name:</strong></div>
+            <div class="col-md-8">{{ me.lastName }}</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4"><strong>Email:</strong></div>
+            <div class="col-md-8">{{ me.email }}</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4"><strong>Date of Birth:</strong></div>
+            <div class="col-md-8">{{ me.dateOfBirth | date:'fullDate' }}</div>
+          </div>
+        </ng-container>
+        <ng-template #loading>
+          <p>Loading...</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

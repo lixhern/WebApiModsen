@@ -1,0 +1,37 @@
+<div class="container">
+    <h2 class="my-4">Events</h2>
+  
+    <!-- Сообщение об отсутствии данных -->
+    <div *ngIf="noData">
+      <p class="alert alert-warning">No events available or an error occurred while loading data.</p>
+    </div>
+    <div *ngIf="!noData && events.length > 0">
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let event of events">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ event.title }}</h5>
+              <p class="card-text">{{ event.description }}</p>
+              <p class="card-text"><small class="text-muted">{{ event.dateOfEvent | date:'medium' }}</small></p>
+              <p class="card-text">{{ event.location }}</p>
+              <p class="card-text">Category: {{  getCategory(event.categoryOfEvent) }}</p>
+              <p class="card-text">
+                Members: {{ event.currentNumberOfMember }}/{{ event.maximumOfMember }}
+                <span *ngIf="event.currentNumberOfMember >= event.maximumOfMember" class="text-danger d-inline mb-2">All spots are taken</span>
+              </p>
+              
+              <div class="container">
+                <div class="row">
+                  <button class="btn btn-outline-primary btn-block mb-2" (click) = "cancelParticipation(event.id)">Cancel participation</button></div>
+                <div class="row">
+                  <a class="btn btn-outline-success" href="/event/{{event.id}}" role="button">Info</a>
+                </div>
+              </div>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  

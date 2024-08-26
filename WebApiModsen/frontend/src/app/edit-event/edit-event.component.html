@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+            <form [formGroup]="editEventForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input id="title" formControlName="title" type="text" class="form-control"  />
+                <div *ngIf="editEventForm.get('title')?.invalid && editEventForm.get('title')?.touched" class="text-danger">
+                    Title is required.
+                  </div>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">description</label>
+                <input id="description" formControlName="description" type="text" class="form-control" />
+                <div *ngIf="editEventForm.get('description')?.invalid && editEventForm.get('description')?.touched" class="text-danger">
+                  description is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                  <label for="dateOfEvent" class="form-label">Date of Birth</label>
+                  <input id="dateOfEvent" formControlName="dateOfEvent" type="datetime-local" class="form-control"  />
+                  <div *ngIf="editEventForm.get('dateOfEvent')?.invalid && editEventForm.get('dateOfEvent')?.touched" class="text-danger">
+                    dateOfEvent is required.
+                  </div>
+                </div>
+              <div class="mb-3">
+                  <label for="location" class="form-label">location</label>
+                  <input id="location" formControlName="location" type="text" class="form-control" />
+                  <div *ngIf="editEventForm.get('location')?.invalid && editEventForm.get('location')?.touched" class="text-danger">
+                      location is required.
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <label for="categoryOfEvent" class="form-label">Category</label>
+                  <select id="categoryOfEvent" formControlName="categoryOfEvent" class="form-select">
+                    <option *ngFor="let category of categories" [value]="category.value">
+                      {{ category.display }}
+                    </option>
+                  </select>
+                  <div *ngIf="editEventForm.get('categoryOfEvent')?.invalid && (editEventForm.get('categoryOfEvent')?.touched || editEventForm.get('categoryOfEvent')?.dirty)" class="text-danger">
+                    Category is required.
+                  </div>
+                </div>
+              
+              <div class="mb-3">
+                  <label for="maximumOfMember" class="form-label">maximumOfMember</label>
+                  <input id="maximumOfMember" formControlName="maximumOfMember" type="text" class="form-control"  />
+                  <div *ngIf="editEventForm.get('maximumOfMember')?.invalid && editEventForm.get('maximumOfMember')?.touched" class="text-danger">
+                      maximumOfMember is required.
+                  </div>
+              </div>
+              <div class="mb-3">
+                <img src="{{event?.imageUrl}}" class="img-thumbnail" alt="...">
+                <label for="image" class="form-label">Upload Image</label>
+                <input id="image" type="file" (change)="onFileChange($event)" class="form-control" accept="image/*" />
+                <div *ngIf="imageError" class="text-danger">
+                    {{ imageError }}
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-success ">Edit</button>
+                </div>
+            </div>
+            </form>
+            
+
+            
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>

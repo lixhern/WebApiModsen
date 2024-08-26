@@ -1,0 +1,50 @@
+
+<h2 class="text-center">Users</h2>
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Date of birth</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let user of users">
+                    <th scope="row">{{user.name}}</th>
+                    <td scope="row">{{user.lastName}}</td>
+                    <td scope="row">{{user.dateOfBirth}}</td>
+                    <td scope="row">{{user.role}}</td>
+                  </tr>
+        </tbody>
+      </table>
+<h2 class="text-center">All events</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Ddate of event</th>
+      <th scope="col">Location</th>
+      <th scope="col">Category</th>
+      <th scope="col">Maximum of member</th>
+      <th scope="col">Current number of member</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+          <tr *ngFor="let event of events">
+              <th scope="row">{{event.title}}</th>
+              <th scope="row">{{event.description}}</th>
+              <th scope="row">{{event.dateOfEvent}}</th>
+              <th scope="row">{{event.location}}</th>
+              <th scope="row">{{ getCategory(event.categoryOfEvent) }}</th>
+              <th scope="row">{{event.maximumOfMember}}</th>
+              <th scope="row">{{event.currentNumberOfMember}} <span *ngIf="event.currentNumberOfMember >= event.maximumOfMember" class="text-danger d-inline mb-2">All spots are taken</span></th>
+              <th scope="row">
+                <img src="{{event.imageUrl}}" class="img-thumbnail" alt="..." width="50" height="50">
+            </th>
+
+            </tr>
+  </tbody>
+</table>
